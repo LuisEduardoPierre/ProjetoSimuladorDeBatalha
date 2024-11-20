@@ -1,30 +1,13 @@
-
-os.execute("chcp 65001")
+local player = require("Definitions.player") 
+local creature = require("Definitions.creature")
+local utils = require("utils")
+utils.enableEmojis()
 --Header
-print([[
-==========================================================================================
-
-        .                                               
-                     /   ))     |\         )               ).           
-               c--. (\  ( `.    / )  (\   ( `.     ).     ( (           
-               | |   ))  ) )   ( (   `.`.  ) )    ( (      ) )          
-               | |  ( ( / _..----.._  ) | ( ( _..----.._  ( (           
- ,-.           | |---) V.'-------.. `-. )-/.-' ..------ `--) \._        
- | /===========| |  (   |      ) ( ``-.`\/'.-''           (   ) ``-._   
- | | / / / / / | |--------------------->  <-------------------------_>=-
- | \===========| |                 ..-'./\.`-..                _,,-'    
- `-'           | |-------._------''_.-'----`-._``------_.-----'         
-               | |         ``----''            ``----''                  
-               | |                                                       
-               c--`
-                               SIMULADOR DE BATALHA
-==========================================================================================       
-               
-                ERGUAM SUAS ESPADAS E SE PREPAREM PARA A CARNIFICINA!!
-                           OU FUJAM DE MEDO PARA A MAMÃE  >:)
-
-]])
+utils.prinHeader()
+--obter a definição de jogador
+print(player.attack)
 --Obter definição de monstro
+local boss = creature
 --Apresentar monstro
-
+utils.printCreature(boss)
 --começar loop de batalha
