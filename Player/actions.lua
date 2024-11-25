@@ -32,8 +32,7 @@ function actions.build()
             end
         end
     }
-end
-
+    
 --Poção de regen usada
 local regenPotion = {
     description = "Usar poção de regeneração",
@@ -53,6 +52,8 @@ local regenPotion = {
 --Populando Lista
 actions.list[#actions.list + 1] = swordAttack
 actions.list[#actions.list + 1] = regenPotion
+
+end
 
 -- Retorna uma lista de ações validas
 function actions.getValidActions(playerData, creatureData)

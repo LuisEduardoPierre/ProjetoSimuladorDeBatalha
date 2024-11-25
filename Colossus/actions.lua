@@ -70,26 +70,7 @@ actions.list[#actions.list + 1] = creatureAttack
 actions.list[#actions.list + 1] = sonarAttack
 actions.list[#actions.list + 1] = await
 
-
-
 end
-
--- --Poção de regen usada
--- local regenPotion = {
---     description = "Usar poção de regeneração",
---     requirement = function (playerData, creatureData) 
---         return playerData.potions >= 1 
---     end,
-
---     execute = function (playerData, creatureData)
---         playerData.potions = playerData.potions - 1
-        
---         local regen = 5
---         playerData.health = math.min(playerData.health, playerData + regen)
---         print("Voce usou uma poção e recuperou alguns pontos de vida")
-    --end
--- }
-
 
 -- Retorna uma lista de ações validas
 function actions.getValidActions(playerData, creatureData)
