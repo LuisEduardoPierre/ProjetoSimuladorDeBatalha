@@ -62,5 +62,11 @@ print("|"..    "ATAQUE:       " .. utils.barra_progresso(creature.attack))
 
 end
 
+-- Captura a ação do player e retorna o numero
+function utils.ask()
+io.write(">")
+local answer = io.read("*n")
+return answer    
+end
 
 return utils

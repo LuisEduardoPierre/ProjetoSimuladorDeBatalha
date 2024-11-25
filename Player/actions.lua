@@ -1,5 +1,7 @@
+local utils = require "utils"
 local actions = {}
 
+--Cria uma lista de ações populada internamente
 actions.list = {}
 
 function actions.build()
@@ -18,9 +20,13 @@ function actions.build()
             local damage = math.max(2, math.ceil(rawDamage))
             --3. Apresentar resultado com print
             if success then
-                print("Atacou com espada e causou " .. damage .. " de dano")
                 --4. Aplicar dano em caso de sucesso
                 creatureData.health = creatureData.health - damage
+                --5. Apresentar o resutado com o print
+                print(string.format("%s com espada e causou %d de dano",playerData.name, damage))
+                
+                local healthRate = math.floor((creatureData.health/ creatureData.maxHealth) * 10)
+                print(string.format("%s: %s",creatureData.name, utils.barra_progresso(healthRate)))
             else
                 print("Ataque com espada falhou!!!")
             end
@@ -40,16 +46,27 @@ local regenPotion = {
         
         local regen = 5
         playerData.health = math.min(playerData.health, playerData + regen)
-        print("Voce usou uma poção e recuperou alguns pontos de vida")
+        print(string.format("%s usou uma poção e recuperou alguns pontos de vida.",playerData.name))
     end
 }
 
 --Populando Lista
 actions.list[#actions.list + 1] = swordAttack
+actions.list[#actions.list + 1] = regenPotion
 
+-- Retorna uma lista de ações validas
+function actions.getValidActions(playerData, creatureData)
+    local validActions = {}
+    for _, action in pairs(actions.list) do
+        local requirement = action.requirement
+        local isValid  = requirement == nil or requirement(playerData, creatureData)
+        if isValid then
+            validActions[#validActions+1] = action
+            
+        end
 
-function actions.getValidActions()
-    
+    end
+    return validActions
 end
 
 return actions
