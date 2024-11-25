@@ -3,7 +3,8 @@ local creature = require("Colossus.creature")
 local creatureActions = require("Colossus.actions")
 local utils = require("utils")
 local playerActions = require("Player.actions")
-utils.enableEmojis()
+os.execute("chcp 65001")
+
 --Header
 utils.prinHeader()
 --obter a definição de jogador
@@ -20,7 +21,7 @@ bossActions.build()
 while true do
 
 --Oferecer ações possíveis para o jogador
-print("Qual sera a próxima ação de %s?",player.name)
+print(string.format("Qual sera a próxima ação de %s?",player.name))
 local validPlayerActions =  playerActions.getValidActions(player, boss)
 for i , action in pairs(validPlayerActions) do
     print(string.format("%d. %s",i, action.description))
@@ -48,7 +49,14 @@ local validBossActions = bossActions.getValidActions(player, boss)
 local bossActions = validBossActions[math.random(#validBossActions)]
 bossActions.execute(player,boss)
 --Finaliza o codigo caso o boss fique com vida <= 0
-if boss.health <= 0 then
-        break
-    end
+end
+
+if player.health <= 0 then
+    print()
+    print(string.format("%s perdeu a batalha!", player.name))
+    print("Quem sabe um outro guerreiro o derrotará")
+elseif boss.health <= 0   then
+    print()
+    print(string.format("%s prevaleceu e venceu a batalha contra!", player.name, boss.name))
+    print("Parabéns!!!")
 end

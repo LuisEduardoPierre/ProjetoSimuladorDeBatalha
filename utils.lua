@@ -1,6 +1,5 @@
 local utils = {}
 
-
 function utils.enableEmojis()
     os.execute("65001")
     os.execute("cls")
